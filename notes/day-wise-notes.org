@@ -22,7 +22,7 @@
    - What differentiates haskell:
      - Strongly, Statically typed, Type inference
        - Java is also strongly and statically typed, but does not have type inference
-       - #+begin_src haskell
+       #+begin_src haskell
            Prelude> 1+'1'
 
            <interactive>:2:2:
@@ -32,13 +32,13 @@
 
            Prelude> :t 234
            234 :: Num a => a
-                 #+end_src
+       #+end_src
      - Functional
        - Functions are first class
-       - #+begin_src haskell
+       #+begin_src haskell
         Prelude> :t (+)
         (+) :: Num a => a -> a -> a
-         #+end_src
+       #+end_src
      - Immutable (by default)
        - Bindings, objects, lists, etc, everything is immutable by default
      - Lazy
@@ -49,7 +49,7 @@
          the necessary things that needs to run.
        - Scala and Clojure have lazy lists and such, but evaluation
          isn't lazy like in Haskell.
-       - #+begin_src haskell
+       #+begin_src haskell
 
            Prelude> let a = 1
            Prelude> let a =3
@@ -72,10 +72,10 @@
      - Pure
        - enforced by the compiler
        - addOne 6 is always 7. Referrential transparency. Not always in other languages.
-       - #+begin_src haskell
-        Prelude> :t getChar
-        getChar :: IO Char
-         #+end_src
+       #+begin_src haskell
+         Prelude> :t getChar
+         getChar :: IO Char
+        #+end_src
    - GHC is a compiler for haskell.
    - runhaskell is an interpreter for haskell.
    - ghci - REPL - backed by the ghc. 1+"1" is not a runtime exception, it is a compile exception.
@@ -120,4 +120,4 @@
   #+end_src
 6. Hoogle
 7. Homework
-- write a route13 cipher
+8. write a route13 cipher
