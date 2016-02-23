@@ -122,3 +122,137 @@
 7. Homework
 8. write a rot13 cipher
 * 2016-02-23
+** Recap
+1. Understanding basic types and reading type definitions
+    #+begin_src haskell
+    Prelude> let square x = x * x
+    Prelude> :t square
+    square :: Num a => a -> a
+
+    Prelude> let squareAndAdd x y = x * x + y
+    Prelude> :t squareAndAdd
+    squareAndAdd :: Num a => a -> a -> a
+
+    Prelude> let name = "haskell"
+    Prelude> :t name
+    name :: [Char]
+
+    Prelude> :t [1,2,3,4,5]
+    [1,2,3,4,5] :: Num t => [t]
+
+
+    #+end_src
+  - last entity after -> is the return type
+  - before the "fat arrow" (=>) tells you the type of arguments
+  - there are no variables, there are only "bindings"
+  - we'll still refer to them as variables for comfort/convenience
+  - think of variables as functions without arguments
+2. Loading modules in the REPL
+   #+begin_src haskell
+    Prelude> :m +Data.List
+    Prelude Data.List> :m -Data.List
+   #+end_src
+  - hit [tab] after "Data.List." to list all functions
+3. Some list operations
+  #+begin_src haskell
+    Prelude Data.List> [1..4] ++ [10..15]
+    [1,2,3,4,10,11,12,13,14,15]
+
+    Prelude Data.List> maximum [1..100]
+    100
+
+    Prelude Data.List> take 5 (repeat 1)
+    [1,1,1,1,1]
+
+    Prelude Data.List> [1..10] !! 3
+    4
+
+    Prelude Data.List> concat [[1..4], [3..5], [1..4]]
+    [1,2,3,4,3,4,5,1,2,3,4]
+
+    Prelude Data.List> take 10 (cycle [1,2,3])
+    [1,2,3,1,2,3,1,2,3,1]
+  #+end_src
+  - take, drop, concat, head, tail, !!
+4. On Nulls
+  - are one of the biggest mistakes in programming
+  - head is unsafe
+  #+begin_src haskell
+  Prelude Data.List> head []
+  Exception: Prelude.head: empty list
+  #+end_src
+5. Rot13
+
+** adhoc
+- remember: lists are linked lists
+- undefined lets the code compiles, but fails in runtime
+    - used when writing large chunks of code and incrementally filling in gaps
+- hs is the extension for haskell files
+
+** Today's learnings
+1. Functions more than one line
+  #+begin_src haskell
+  -- multi clause function
+  sumTill 1 = 1
+  sumTill n = n + sumTill (n - 1)
+
+  -- guard patterns
+  sumTill' n
+   | n == 1 = 1
+   | otherwise = n + sumTill' (n - 1)
+
+
+  -- case
+  sumTill'' n = case n of
+    1 -> 1
+    _ -> n + sumTill'' (n - 1)
+
+  -- you can mix them
+  func x 1
+   | x == 1 = 0
+  func x y = 999
+  #+end_src
+  - guard-pattern translates to if - checks happen at run time
+  - multi-clause translates to case - checks happen in compile time
+  - non exhaustive pattern search
+
+  - there's a limit to recursion that's the stack size set using a flag
+  - ghc does tail call elimination
+
+2. where and let
+  #+begin_src haskell
+  -- top-bottom style
+  addOneSquare x = y * y
+    where y = x+1
+
+  -- bottom-top style
+  addOneSquare' x =  let y = x + 1
+                      in y * y
+  #+end_src
+
+3. Aside
+  - what is otherwise?
+  #+begin_src haskell
+  *Main> otherwise
+  True
+  #+end_src
+
+4. List comprehensions
+  #+begin_src haskell
+  *Main> [ x*x | x <- [1..10]]
+  [1,4,9,16,25,36,49,64,81,100]
+
+  *Main> [ (x,y) | x <- [1,2], y <- ['a','b']]
+  [(1,'a'),(1,'b'),(2,'a'),(2,'b')]
+
+  -- conditions
+  *Main> [ (x,y) | x <- [1,2], y <- [1..10], x == y ]
+  [(1,1),(2,2)]
+
+  -- let bindings
+  *Main> [ (x,y,z) | x <- [1,2], y <- [1..10], x == y, let z = x + 1 ]
+  [(1,1,2),(2,2,3)]
+  #+end_src
+
+5. Today's homework
+  - https://www.seas.upenn.edu/~cis194/hw/01-intro.pdf
