@@ -256,3 +256,149 @@
 
 5. Today's homework
   - https://www.seas.upenn.edu/~cis194/hw/01-intro.pdf
+* 2016-02-29
+- how do you create your own data types?
+- you probably want to do this - create your own data types
+
+- type synonym / aliases
+  #+begin_src haskell
+  Prelude> :i String
+  type String = [Char] 	-- Defined in ‘GHC.Base’
+  Prelude> :i FilePath
+  type FilePath = String -- Defined in ‘GHC.IO’
+  #+end_src
+
+- use `data`
+  #+begin_src haskell
+  Prelude> data User = User String Int deriving (Show)
+  Prelude> User "someone's name" 123
+  User "someone's name" 123
+  Prelude> let u = User "someone's name" 123
+  Prelude> :t u
+  u :: User
+  #+end_src
+- data types are CapitalCased
+- function names are camelCased
+
+- how do you read from `User`?
+  #+begin_src haskell
+  Prelude> data User = User {userName:: String, userAge:: Int} deriving (Show)
+  Prelude> let u = User "someone's name" 123
+  Prelude> u
+  User {userName = "someone's name", userAge = 123}
+  Prelude> userName u
+  "someone's name"
+  Prelude> userAge u
+  123
+  #+end_src
+
+- "record fields" are functions
+  #+begin_src haskell
+  Prelude> :t userName
+  userName :: User -> String
+  #+end_src
+
+- why is `User` repeated?
+  #+begin_src haskell
+  Prelude> data UserXYZ = User {userName:: String, userAge:: Int} deriving (Show)
+  Prelude> :t userName
+  userName :: UserXYZ -> String
+  Prelude> let u = UserXYZ "someone's name" 123
+
+  <interactive>:19:9: Not in scope: data constructor ‘UserXYZ’
+  Prelude> :t u
+  u :: UserXYZ
+  Prelude> :t User
+  User :: String -> Int -> UserXYZ
+  #+end_src
+  - UserXYZ is the name of the data type
+  - User is the name of the constructor, and is a function
+
+- why is the constructor name different?
+  - so that we can create multiple constructors
+  #+begin_src
+  data User = NormalUser {userName:: String, userAge:: Int}
+          | Admin { adminRole :: String }
+  	  deriving (Show)
+  #+end_src
+- if you don't give record fields names, then how do you use them?
+  #+begin_src haskell
+  Prelude> data User = User String Int deriving (Show)
+  Prelude> let u = User "someone's name" 123
+  Prelude> let printUserName (User name age) = print ("name is: " ++ name ++ " and age is:" ++ show age)
+  Prelude> printUserName u
+  "name is: someone's name and age is:123"
+  #+end_src
+* 2016-03-01
+- implementing insert and fromList in BST
+  #+begin_src haskell
+  insert :: BST -> Int -> BST
+  insert EmptyNode x = Node EmptyNode x EmptyNode
+  insert n@(Node l v r) x
+   | x == v = n
+   | x < v = Node (insert l x) v r
+   | x > v = Node l v (insert r x)
+
+  fromList :: [Int] -> BST
+  fromList [x] = Node EmptyNode x EmptyNode
+  fromList (f:r) = insert (fromList r) f
+  #+end_src
+- generative tests
+- [aside] anonymous functions
+  #+begin_src haskell
+  Prelude Test.QuickCheck> let f = \x y z -> x + y + z
+  Prelude Test.QuickCheck> f 1 2 3
+  6
+  #+end_src
+- quickCheck
+  #+begin_src haskell
+  Prelude Test.QuickCheck> quickCheck(\i -> i == i)
+  +++ OK, passed 100 tests.
+
+  Prelude Test.QuickCheck> :t quickCheck
+  quickCheck :: Testable prop => prop -> IO ()
+  #+end_src
+- property tests for BST
+  #+begin_src haskell
+  quickCheck (\list val -> let tree = fromList list in find (insert tree val) val)
+  quickCheck (\list -> Data.List.sort list == Data.List.nub (inOrder (fromList list)))
+  quickCheck (\list -> isBST (fromList list))
+  #+end_src
+  - try `verboseTest` to see what
+- what's this 'a' we see everywhere?
+  #+begin_src haskell
+  Prelude> :t id
+  id :: a -> a
+
+  Prelude> let f x = (x,x)
+  Prelude> :t f
+  f :: t -> (t, t)
+
+  Prelude> :t (:)
+  (:) :: a -> [a] -> [a]
+  #+end_src
+  - 'a' is anything
+  - `id` and `fst` are polymorphic functions
+  - adhoc polymorphism
+- polymorphic types
+  #+begin_src haskell
+  data Tuple x y = Tup x y deriving (Show)
+
+  Prelude> data BST = EmptyNode | Node BST Int BST deriving (Show)
+  Prelude> :t Node
+  Node :: BST -> Int -> BST -> BST
+  Prelude> data BST a = EmptyNode | Node (BST a) a (BST a) deriving (Show)
+  Prelude> :t Node
+  Node :: BST a -> a -> BST a -> BST a
+  #+end_src
+- type hinting
+  #+begin_src haskell
+  Prelude> :t EmptyNode
+  EmptyNode :: BST a
+  Prelude> :t EmptyNode :: BST Int
+  EmptyNode :: BST Int :: BST Int
+  #+end_src
+
+- Maybe?
+- Homework
+  - implement treemap: insert, get, keys, values, fromList
