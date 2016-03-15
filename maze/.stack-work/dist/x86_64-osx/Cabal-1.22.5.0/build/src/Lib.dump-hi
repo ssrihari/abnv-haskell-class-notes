@@ -1,0 +1,489 @@
+
+==================== FINAL INTERFACE ====================
+2016-03-14 14:09:48.52443 UTC
+
+interface maze_HhWpctN3zRv3CvYRyfN5QC:Lib 7103
+  interface hash: 44005df3ac1b74cfc23d3c20e594ea1a
+  ABI hash: 019f7806bf14e9e2847925448ed799f2
+  export-list hash: b100c1f933249e248768a29b3be14b4d
+  orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
+  flag hash: 4c0a7b65a6dddbc4161c2e2bfabe3dc3
+  sig of: Nothing
+  used TH splices: False
+  where
+exports:
+  Lib.someFunc
+module dependencies:
+package dependencies: base-4.8.2.0* ghc-prim-0.4.0.0
+                      integer-gmp-1.0.0.0
+orphans: base-4.8.2.0:GHC.Base base-4.8.2.0:GHC.Float
+family instance modules: base-4.8.2.0:Control.Applicative
+                         base-4.8.2.0:Data.Either base-4.8.2.0:Data.Monoid
+                         base-4.8.2.0:Data.Type.Equality base-4.8.2.0:GHC.Generics
+import  -/  base-4.8.2.0:GHC.Base 1db77db5dae73d8c424c85b09fbadb89
+import  -/  base-4.8.2.0:GHC.Show 0e1d8380a8fb0cfb07ebeda3b70cbf38
+import  -/  base-4.8.2.0:Prelude 694dcaf039efe62df1c44834e2dbd2fb
+import  -/  ghc-prim-0.4.0.0:GHC.Classes e1f4ff80f7b5262008a595d29986fb18
+4feaca780837cff556ca7a8b8d1b4d65
+  $fEqMaze :: GHC.Classes.Eq Lib.Maze
+  DFunId[0]
+  {- HasNoCafRefs, Strictness: m, Inline: [ALWAYS] CONLIKE,
+     Unfolding: DFun:. @ Lib.Maze Lib.$fEqMaze_$c== Lib.$fEqMaze_$c/= -}
+4feaca780837cff556ca7a8b8d1b4d65
+  $fEqMaze_$c/= :: Lib.Maze -> Lib.Maze -> GHC.Types.Bool
+  {- Arity: 2, HasNoCafRefs,
+     Strictness: <S(SLL),1*U(1*U(U),1*U(U),1*U)><S(SLL),1*U(1*U(U),1*U(U),1*U)>,
+     Unfolding: InlineRule (2, True, False)
+                (\ a :: Lib.Maze b :: Lib.Maze ->
+                 case Lib.$fEqMaze_$c== a b of wild {
+                   GHC.Types.False -> GHC.Types.True
+                   GHC.Types.True -> GHC.Types.False }) -}
+4feaca780837cff556ca7a8b8d1b4d65
+  $fEqMaze_$c== :: Lib.Maze -> Lib.Maze -> GHC.Types.Bool
+  {- Arity: 2, HasNoCafRefs,
+     Strictness: <S(SLL),1*U(1*U(U),1*U(U),1*U)><S(SLL),1*U(1*U(U),1*U(U),1*U)>,
+     Inline: INLINE[0],
+     Unfolding: InlineRule (2, True, False)
+                (\ w :: Lib.Maze w1 :: Lib.Maze ->
+                 case w of ww { Lib.Maze ww1 ww2 ww3 ->
+                 case ww1 of ww4 { GHC.Types.I# ww5 ->
+                 case w1 of ww6 { Lib.Maze ww7 ww8 ww9 ->
+                 case ww7 of ww10 { GHC.Types.I# ww11 ->
+                 Lib.$w$c== ww5 ww2 ww3 ww11 ww8 ww9 } } } }) -}
+4101987240f43580a67d952106c7d1a7
+  $fEqNode :: GHC.Classes.Eq Lib.Node
+  DFunId[0]
+  {- HasNoCafRefs, Strictness: m, Inline: [ALWAYS] CONLIKE,
+     Unfolding: DFun:. @ Lib.Node Lib.$fEqNode_$c== Lib.$fEqNode_$c/= -}
+4101987240f43580a67d952106c7d1a7
+  $fEqNode_$c/= :: Lib.Node -> Lib.Node -> GHC.Types.Bool
+  {- Arity: 2, HasNoCafRefs,
+     Strictness: <S(S(SL)LLLL),1*U(1*U(1*U(U),1*U(U)),1*U,1*U,1*U,1*U)><S(S(SL)LLLL),1*U(1*U(1*U(U),1*U(U)),1*U,1*U,1*U,1*U)>,
+     Unfolding: InlineRule (2, True, False)
+                (\ a :: Lib.Node b :: Lib.Node ->
+                 case Lib.$fEqNode_$c== a b of wild {
+                   GHC.Types.False -> GHC.Types.True
+                   GHC.Types.True -> GHC.Types.False }) -}
+4101987240f43580a67d952106c7d1a7
+  $fEqNode_$c== :: Lib.Node -> Lib.Node -> GHC.Types.Bool
+  {- Arity: 2, HasNoCafRefs,
+     Strictness: <S(S(SL)LLLL),1*U(1*U(1*U(U),1*U(U)),1*U,1*U,1*U,1*U)><S(S(SL)LLLL),1*U(1*U(1*U(U),1*U(U)),1*U,1*U,1*U,1*U)>,
+     Inline: INLINE[0],
+     Unfolding: InlineRule (2, True, False)
+                (\ w :: Lib.Node w1 :: Lib.Node ->
+                 case w of ww { Lib.Node ww1 ww2 ww3 ww4 ww5 ->
+                 case ww1 of ww6 { (,) ww7 ww8 ->
+                 case ww7 of ww9 { GHC.Types.I# ww10 ->
+                 case w1 of ww11 { Lib.Node ww12 ww13 ww14 ww15 ww16 ->
+                 case ww12 of ww17 { (,) ww18 ww19 ->
+                 case ww18 of ww20 { GHC.Types.I# ww21 ->
+                 Lib.$w$c==1
+                   ww10
+                   ww8
+                   ww2
+                   ww3
+                   ww4
+                   ww5
+                   ww21
+                   ww19
+                   ww13
+                   ww14
+                   ww15
+                   ww16 } } } } } }) -}
+508e7c6bdfe13dded95c61d12147d8b5
+  $fEqNode_$c==1 :: Lib.Wall -> Lib.Wall -> GHC.Types.Bool
+  {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><S,1*U>,
+     Unfolding: InlineRule (2, True, False)
+                (\ ds :: Lib.Wall ds1 :: Lib.Wall ->
+                 case ds of wild {
+                   Lib.Open
+                   -> case ds1 of wild1 {
+                        Lib.Open -> GHC.Types.True Lib.Closed -> GHC.Types.False }
+                   Lib.Closed
+                   -> case ds1 of wild1 {
+                        Lib.Open -> GHC.Types.False Lib.Closed -> GHC.Types.True } }) -}
+508e7c6bdfe13dded95c61d12147d8b5
+  $fEqWall :: GHC.Classes.Eq Lib.Wall
+  DFunId[0]
+  {- HasNoCafRefs, Strictness: m, Inline: [ALWAYS] CONLIKE,
+     Unfolding: DFun:.
+                  @ Lib.Wall Lib.$fEqNode_$c==1 Lib.$fEqWall_$c/= -}
+508e7c6bdfe13dded95c61d12147d8b5
+  $fEqWall_$c/= :: Lib.Wall -> Lib.Wall -> GHC.Types.Bool
+  {- Arity: 2, HasNoCafRefs, Strictness: <S,1*U><S,1*U>,
+     Unfolding: InlineRule (2, True, False)
+                (\ a :: Lib.Wall b :: Lib.Wall ->
+                 case a of wild {
+                   Lib.Open
+                   -> case b of wild1 {
+                        Lib.Open -> GHC.Types.False Lib.Closed -> GHC.Types.True }
+                   Lib.Closed
+                   -> case b of wild1 {
+                        Lib.Open -> GHC.Types.True Lib.Closed -> GHC.Types.False } }) -}
+4feaca780837cff556ca7a8b8d1b4d65
+  $fShowMaze :: GHC.Show.Show Lib.Maze
+  DFunId[0]
+  {- Strictness: m, Inline: [ALWAYS] CONLIKE,
+     Unfolding: DFun:.
+                  @ Lib.Maze
+                  Lib.$fShowMaze_$cshowsPrec
+                  Lib.$fShowMaze_$cshow
+                  Lib.$fShowMaze_$cshowList -}
+4feaca780837cff556ca7a8b8d1b4d65
+  $fShowMaze1 :: Lib.Maze -> GHC.Show.ShowS
+  {- Arity: 2,
+     Unfolding: (\ w :: Lib.Maze w1 :: GHC.Base.String ->
+                 case w of ww { Lib.Maze ww1 ww2 ww3 ->
+                 Lib.$w$cshowsPrec 0 ww1 ww2 ww3 w1 }) -}
+4feaca780837cff556ca7a8b8d1b4d65
+  $fShowMaze_$cshow :: Lib.Maze -> GHC.Base.String
+  {- Arity: 1, Strictness: <S,1*U(1*U(U),1*U(U),1*U)>,
+     Unfolding: InlineRule (1, True, False)
+                (\ x :: Lib.Maze ->
+                 Lib.$fShowMaze_$cshowsPrec
+                   GHC.Show.shows18
+                   x
+                   (GHC.Types.[] @ GHC.Types.Char)) -}
+4feaca780837cff556ca7a8b8d1b4d65
+  $fShowMaze_$cshowList :: [Lib.Maze] -> GHC.Show.ShowS
+  {- Arity: 2,
+     Unfolding: (GHC.Show.showList__ @ Lib.Maze Lib.$fShowMaze1) -}
+4feaca780837cff556ca7a8b8d1b4d65
+  $fShowMaze_$cshowsPrec ::
+    GHC.Types.Int -> Lib.Maze -> GHC.Show.ShowS
+  {- Arity: 3, Strictness: <S,1*U(U)><S,1*U(1*U(U),1*U(U),1*U)><L,U>,
+     Inline: INLINE[0],
+     Unfolding: InlineRule (3, True, False)
+                (\ w :: GHC.Types.Int w1 :: Lib.Maze w2 :: GHC.Base.String ->
+                 case w of ww { GHC.Types.I# ww1 ->
+                 case w1 of ww2 { Lib.Maze ww3 ww4 ww5 ->
+                 Lib.$w$cshowsPrec ww1 ww3 ww4 ww5 w2 } }) -}
+4101987240f43580a67d952106c7d1a7
+  $fShowNode :: GHC.Show.Show Lib.Node
+  DFunId[0]
+  {- Strictness: m, Inline: [ALWAYS] CONLIKE,
+     Unfolding: DFun:.
+                  @ Lib.Node
+                  Lib.$fShowNode_$cshowsPrec
+                  Lib.$fShowNode_$cshow
+                  Lib.$fShowNode_$cshowList -}
+4101987240f43580a67d952106c7d1a7
+  $fShowNode1 :: Lib.Node -> GHC.Show.ShowS
+  {- Arity: 2,
+     Unfolding: (\ w :: Lib.Node w1 :: GHC.Base.String ->
+                 case w of ww { Lib.Node ww1 ww2 ww3 ww4 ww5 ->
+                 Lib.$w$cshowsPrec1 0 ww1 ww2 ww3 ww4 ww5 w1 }) -}
+4101987240f43580a67d952106c7d1a7
+  $fShowNode_$cshow :: Lib.Node -> GHC.Base.String
+  {- Arity: 1, Strictness: <S,1*U(1*U(1*U(U),U(U)),1*U,1*U,1*U,1*U)>,
+     Unfolding: InlineRule (1, True, False)
+                (\ x :: Lib.Node ->
+                 Lib.$fShowNode_$cshowsPrec
+                   GHC.Show.shows18
+                   x
+                   (GHC.Types.[] @ GHC.Types.Char)) -}
+4101987240f43580a67d952106c7d1a7
+  $fShowNode_$cshowList :: [Lib.Node] -> GHC.Show.ShowS
+  {- Arity: 2,
+     Unfolding: (GHC.Show.showList__ @ Lib.Node Lib.$fShowNode1) -}
+4101987240f43580a67d952106c7d1a7
+  $fShowNode_$cshowsPrec ::
+    GHC.Types.Int -> Lib.Node -> GHC.Show.ShowS
+  {- Arity: 3,
+     Strictness: <S,1*U(U)><S,1*U(1*U(1*U(U),U(U)),1*U,1*U,1*U,1*U)><L,U>,
+     Inline: INLINE[0],
+     Unfolding: InlineRule (3, True, False)
+                (\ w :: GHC.Types.Int w1 :: Lib.Node w2 :: GHC.Base.String ->
+                 case w of ww { GHC.Types.I# ww1 ->
+                 case w1 of ww2 { Lib.Node ww3 ww4 ww5 ww6 ww7 ->
+                 Lib.$w$cshowsPrec1 ww1 ww3 ww4 ww5 ww6 ww7 w2 } }) -}
+508e7c6bdfe13dded95c61d12147d8b5
+  $fShowWall :: GHC.Show.Show Lib.Wall
+  DFunId[0]
+  {- Strictness: m, Inline: [ALWAYS] CONLIKE,
+     Unfolding: DFun:.
+                  @ Lib.Wall
+                  Lib.$fShowWall_$cshowsPrec
+                  Lib.$fShowWall_$cshow
+                  Lib.$fShowWall_$cshowList -}
+508e7c6bdfe13dded95c61d12147d8b5
+  $fShowWall1 :: Lib.Wall -> GHC.Show.ShowS
+  {- Arity: 2, Strictness: <S,1*U><L,1*U>,
+     Unfolding: InlineRule (2, True, False)
+                (\ ds :: Lib.Wall eta :: GHC.Base.String ->
+                 case ds of wild {
+                   Lib.Open
+                   -> GHC.Base.augment
+                        @ GHC.Types.Char
+                        (\ @ b c :: GHC.Types.Char -> b -> b[OneShot] n :: b[OneShot] ->
+                         GHC.Base.foldr @ GHC.Types.Char @ b c n Lib.$fShowWall3)
+                        eta
+                   Lib.Closed
+                   -> GHC.Base.augment
+                        @ GHC.Types.Char
+                        (\ @ b c :: GHC.Types.Char -> b -> b[OneShot] n :: b[OneShot] ->
+                         GHC.Base.foldr @ GHC.Types.Char @ b c n Lib.$fShowWall2)
+                        eta }) -}
+fad4d92f4490f5fc2ce4fca6cda5e2dc
+  $fShowWall2 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "Closed"#) -}
+29d8534d1faaab2d0a70421f63d9bf42
+  $fShowWall3 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "Open"#) -}
+508e7c6bdfe13dded95c61d12147d8b5
+  $fShowWall_$cshow :: Lib.Wall -> GHC.Base.String
+  {- Arity: 1, Strictness: <S,1*U>,
+     Unfolding: InlineRule (1, True, False)
+                (\ x :: Lib.Wall ->
+                 case x of wild {
+                   Lib.Open -> Lib.$fShowWall3 Lib.Closed -> Lib.$fShowWall2 }) -}
+508e7c6bdfe13dded95c61d12147d8b5
+  $fShowWall_$cshowList :: [Lib.Wall] -> GHC.Show.ShowS
+  {- Arity: 2,
+     Unfolding: (GHC.Show.showList__ @ Lib.Wall Lib.$fShowWall1) -}
+508e7c6bdfe13dded95c61d12147d8b5
+  $fShowWall_$cshowsPrec ::
+    GHC.Types.Int -> Lib.Wall -> GHC.Show.ShowS
+  {- Arity: 3, Strictness: <L,A><S,1*U><L,1*U>,
+     Unfolding: InlineRule (3, True, False)
+                (\ ds :: GHC.Types.Int ds1 :: Lib.Wall eta :: GHC.Base.String ->
+                 case ds1 of wild {
+                   Lib.Open
+                   -> GHC.Base.augment
+                        @ GHC.Types.Char
+                        (\ @ b c :: GHC.Types.Char -> b -> b[OneShot] n :: b[OneShot] ->
+                         GHC.Base.foldr @ GHC.Types.Char @ b c n Lib.$fShowWall3)
+                        eta
+                   Lib.Closed
+                   -> GHC.Base.augment
+                        @ GHC.Types.Char
+                        (\ @ b c :: GHC.Types.Char -> b -> b[OneShot] n :: b[OneShot] ->
+                         GHC.Base.foldr @ GHC.Types.Char @ b c n Lib.$fShowWall2)
+                        eta }) -}
+27db7b07da609812e47e250e0ecc8f87
+  $w$c== ::
+    GHC.Prim.Int#
+    -> GHC.Types.Int
+    -> [Lib.Node]
+    -> GHC.Prim.Int#
+    -> GHC.Types.Int
+    -> [Lib.Node]
+    -> GHC.Types.Bool
+  {- Arity: 6, HasNoCafRefs,
+     Strictness: <L,U><L,1*U(U)><L,1*U><L,U><L,1*U(U)><L,1*U>,
+     Inline: [0],
+     Unfolding: (\ ww :: GHC.Prim.Int#
+                   ww1 :: GHC.Types.Int
+                   ww2 :: [Lib.Node]
+                   ww3 :: GHC.Prim.Int#
+                   ww4 :: GHC.Types.Int
+                   ww5 :: [Lib.Node] ->
+                 case GHC.Prim.tagToEnum#
+                        @ GHC.Types.Bool
+                        (GHC.Prim.==# ww ww3) of wild {
+                   GHC.Types.False -> GHC.Types.False
+                   GHC.Types.True
+                   -> case ww1 of wild1 { GHC.Types.I# x ->
+                      case ww4 of wild2 { GHC.Types.I# y ->
+                      case GHC.Prim.tagToEnum#
+                             @ GHC.Types.Bool
+                             (GHC.Prim.==# x y) of wild3 {
+                        GHC.Types.False -> GHC.Types.False
+                        GHC.Types.True
+                        -> GHC.Classes.$fEq[]_$c==
+                             @ Lib.Node
+                             Lib.$fEqNode
+                             ww2
+                             ww5 } } } }) -}
+5eba22004cb9e09bea49e0d27a11e28b
+  $w$c==1 ::
+    GHC.Prim.Int#
+    -> GHC.Types.Int
+    -> Lib.Wall
+    -> Lib.Wall
+    -> Lib.Wall
+    -> Lib.Wall
+    -> GHC.Prim.Int#
+    -> GHC.Types.Int
+    -> Lib.Wall
+    -> Lib.Wall
+    -> Lib.Wall
+    -> Lib.Wall
+    -> GHC.Types.Bool
+  {- Arity: 12, HasNoCafRefs,
+     Strictness: <L,U><L,1*U(U)><L,1*U><L,1*U><L,1*U><L,1*U><L,U><L,1*U(U)><L,1*U><L,1*U><L,1*U><L,1*U>,
+     Inline: [0],
+     Unfolding: (\ ww :: GHC.Prim.Int#
+                   ww1 :: GHC.Types.Int
+                   ww2 :: Lib.Wall
+                   ww3 :: Lib.Wall
+                   ww4 :: Lib.Wall
+                   ww5 :: Lib.Wall
+                   ww6 :: GHC.Prim.Int#
+                   ww7 :: GHC.Types.Int
+                   ww8 :: Lib.Wall
+                   ww9 :: Lib.Wall
+                   ww10 :: Lib.Wall
+                   ww11 :: Lib.Wall ->
+                 case GHC.Prim.tagToEnum#
+                        @ GHC.Types.Bool
+                        (GHC.Prim.==# ww ww6) of wild {
+                   GHC.Types.False -> GHC.Types.False
+                   GHC.Types.True
+                   -> case ww1 of wild1 { GHC.Types.I# x ->
+                      case ww7 of wild2 { GHC.Types.I# y ->
+                      case GHC.Prim.tagToEnum#
+                             @ GHC.Types.Bool
+                             (GHC.Prim.==# x y) of wild3 {
+                        GHC.Types.False -> GHC.Types.False
+                        GHC.Types.True
+                        -> let {
+                             $j :: GHC.Prim.Void# -> GHC.Types.Bool
+                               {- Arity: 1, Strictness: <L,A> -}
+                             = \ w :: GHC.Prim.Void#[OneShot] ->
+                               let {
+                                 $j1 :: GHC.Prim.Void# -> GHC.Types.Bool
+                                   {- Arity: 1, Strictness: <L,A> -}
+                                 = \ w1 :: GHC.Prim.Void#[OneShot] ->
+                                   case ww4 of wild4 {
+                                     Lib.Open
+                                     -> case ww10 of wild5 {
+                                          Lib.Open -> Lib.$fEqNode_$c==1 ww5 ww11
+                                          Lib.Closed -> GHC.Types.False }
+                                     Lib.Closed
+                                     -> case ww10 of wild5 {
+                                          Lib.Open -> GHC.Types.False
+                                          Lib.Closed -> Lib.$fEqNode_$c==1 ww5 ww11 } }
+                               } in
+                               case ww3 of wild4 {
+                                 Lib.Open
+                                 -> case ww9 of wild5 {
+                                      Lib.Open -> $j1 GHC.Prim.void# Lib.Closed -> GHC.Types.False }
+                                 Lib.Closed
+                                 -> case ww9 of wild5 {
+                                      Lib.Open -> GHC.Types.False
+                                      Lib.Closed -> $j1 GHC.Prim.void# } }
+                           } in
+                           case ww2 of wild4 {
+                             Lib.Open
+                             -> case ww8 of wild5 {
+                                  Lib.Open -> $j GHC.Prim.void# Lib.Closed -> GHC.Types.False }
+                             Lib.Closed
+                             -> case ww8 of wild5 {
+                                  Lib.Open -> GHC.Types.False
+                                  Lib.Closed -> $j GHC.Prim.void# } } } } } }) -}
+a3bb762106fd75243fbc9c7211f14e61
+  $w$cshowsPrec ::
+    GHC.Prim.Int#
+    -> GHC.Types.Int
+    -> GHC.Types.Int
+    -> [Lib.Node]
+    -> GHC.Base.String
+    -> GHC.Base.String
+  {- Arity: 5, Strictness: <L,U><L,1*U(U)><L,1*U(U)><L,1*U><L,U>,
+     Inline: [0] -}
+f25e7c9dae764b38486bcd0a97bb1c80
+  $w$cshowsPrec1 ::
+    GHC.Prim.Int#
+    -> Lib.Coord
+    -> Lib.Wall
+    -> Lib.Wall
+    -> Lib.Wall
+    -> Lib.Wall
+    -> GHC.Base.String
+    -> GHC.Base.String
+  {- Arity: 7,
+     Strictness: <L,U><L,1*U(1*U(U),U(U))><L,1*U><L,1*U><L,1*U><L,1*U><L,U>,
+     Inline: [0] -}
+adb1a665fdeb2630a1cc8fd76ceb0a50
+  type Coord = (GHC.Types.Int, GHC.Types.Int)
+4feaca780837cff556ca7a8b8d1b4d65
+  data Maze
+    = Maze {mazeWidth :: GHC.Types.Int,
+            mazeHeight :: GHC.Types.Int,
+            mazeNodes :: [Lib.Node]}
+4101987240f43580a67d952106c7d1a7
+  data Node
+    = Node {nodeCoord :: Lib.Coord,
+            nodeUp :: Lib.Wall,
+            nodeDown :: Lib.Wall,
+            nodeLeft :: Lib.Wall,
+            nodeRight :: Lib.Wall}
+508e7c6bdfe13dded95c61d12147d8b5
+  data Wall = Open | Closed
+    Promotable
+fcb2ec3bbef8e5a0fd7bd7bffba4c61c
+  mazeHeight :: Lib.Maze -> GHC.Types.Int
+  RecSel Lib.Maze
+  {- Arity: 1, HasNoCafRefs, Strictness: <S(LSL),1*U(A,1*U(U),A)>,
+     Unfolding: InlineRule (1, True, False)
+                (\ ds :: Lib.Maze ->
+                 case ds of wild { Lib.Maze ds1 ds2 ds3 -> ds2 }) -}
+5abfce5605af2f76971e426a77c2d529
+  mazeNodes :: Lib.Maze -> [Lib.Node]
+  RecSel Lib.Maze
+  {- Arity: 1, HasNoCafRefs, Strictness: <S(LLS),1*U(A,A,1*U)>,
+     Unfolding: InlineRule (1, True, False)
+                (\ ds :: Lib.Maze ->
+                 case ds of wild { Lib.Maze ds1 ds2 ds3 -> ds3 }) -}
+e38d06c6cff8a5b25ce5814690848a04
+  mazeWidth :: Lib.Maze -> GHC.Types.Int
+  RecSel Lib.Maze
+  {- Arity: 1, HasNoCafRefs, Strictness: <S(SLL),1*U(1*U(U),A,A)>,
+     Unfolding: InlineRule (1, True, False)
+                (\ ds :: Lib.Maze ->
+                 case ds of wild { Lib.Maze ds1 ds2 ds3 -> ds1 }) -}
+4790e84ab5ab66cc7063d28a02f691f1
+  nodeCoord :: Lib.Node -> Lib.Coord
+  RecSel Lib.Node
+  {- Arity: 1, HasNoCafRefs,
+     Strictness: <S(SLLLL),1*U(1*U(U,U),A,A,A,A)>,
+     Unfolding: InlineRule (1, True, False)
+                (\ ds :: Lib.Node ->
+                 case ds of wild { Lib.Node ds1 ds2 ds3 ds4 ds5 -> ds1 }) -}
+1346a321cc11001e329238f7b6fdc2ba
+  nodeDown :: Lib.Node -> Lib.Wall
+  RecSel Lib.Node
+  {- Arity: 1, HasNoCafRefs, Strictness: <S(LLSLL),1*U(A,A,1*U,A,A)>,
+     Unfolding: InlineRule (1, True, False)
+                (\ ds :: Lib.Node ->
+                 case ds of wild { Lib.Node ds1 ds2 ds3 ds4 ds5 -> ds3 }) -}
+9237898e57a9ec61ca41d343b676d2a4
+  nodeLeft :: Lib.Node -> Lib.Wall
+  RecSel Lib.Node
+  {- Arity: 1, HasNoCafRefs, Strictness: <S(LLLSL),1*U(A,A,A,1*U,A)>,
+     Unfolding: InlineRule (1, True, False)
+                (\ ds :: Lib.Node ->
+                 case ds of wild { Lib.Node ds1 ds2 ds3 ds4 ds5 -> ds4 }) -}
+621e5f7aa8c181c5c5b2ae74bd9c47b2
+  nodeRight :: Lib.Node -> Lib.Wall
+  RecSel Lib.Node
+  {- Arity: 1, HasNoCafRefs, Strictness: <S(LLLLS),1*U(A,A,A,A,1*U)>,
+     Unfolding: InlineRule (1, True, False)
+                (\ ds :: Lib.Node ->
+                 case ds of wild { Lib.Node ds1 ds2 ds3 ds4 ds5 -> ds5 }) -}
+1d21e549debe9f07fb15fbcdff386fe6
+  nodeUp :: Lib.Node -> Lib.Wall
+  RecSel Lib.Node
+  {- Arity: 1, HasNoCafRefs, Strictness: <S(LSLLL),1*U(A,1*U,A,A,A)>,
+     Unfolding: InlineRule (1, True, False)
+                (\ ds :: Lib.Node ->
+                 case ds of wild { Lib.Node ds1 ds2 ds3 ds4 ds5 -> ds2 }) -}
+4a11efe8758560baaeddd5426c4ac742
+  someFunc :: t
+  {- Strictness: b,
+     Unfolding: InlineRule (0, True, True) GHC.Err.undefined -}
+instance GHC.Classes.Eq [Lib.Maze] = Lib.$fEqMaze
+instance GHC.Classes.Eq [Lib.Node] = Lib.$fEqNode
+instance GHC.Classes.Eq [Lib.Wall] = Lib.$fEqWall
+instance GHC.Show.Show [Lib.Maze] = Lib.$fShowMaze
+instance GHC.Show.Show [Lib.Node] = Lib.$fShowNode
+instance GHC.Show.Show [Lib.Wall] = Lib.$fShowWall
+vectorised variables:
+vectorised tycons:
+vectorised reused tycons:
+parallel variables:
+parallel tycons:
+trusted: safe
+require own pkg trusted: False
+
