@@ -402,3 +402,22 @@
 - Maybe?
 - Homework
   - implement treemap: insert, get, keys, values, fromList
+* 2016-03-14
+** quick revision
+- revising type classes
+  - they're like interfaces
+  - has "laws"
+  - must implement a test suite to ensure you're following the laws
+  - they have functions that must be implemented
+  - can derive them directly, or can override
+  - example of overriding
+  #+begin_src haskell
+    instance Show BST where
+  #+end_src
+- Enum, Show, Eq, Ord, Bounded, Read
+- $ is how to apply partials
+- "constraints" (reason behind fat arrows)
+- `class Eq a => Ord a` means "ord is a subclass of eq. something is equatable only if it is orderable"
+- numeric tower
+- a type is an instance of a type class
+** maze

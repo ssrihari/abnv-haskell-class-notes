@@ -17,7 +17,7 @@ version = Version [0,1,0,0] []
 bindir, libdir, datadir, libexecdir, sysconfdir :: FilePath
 
 bindir     = "/Users/sriharisriraman/dev/haskell/abnv-course/maze/.stack-work/install/x86_64-osx/lts-5.4/7.10.3/bin"
-libdir     = "/Users/sriharisriraman/dev/haskell/abnv-course/maze/.stack-work/install/x86_64-osx/lts-5.4/7.10.3/lib/x86_64-osx-ghc-7.10.3/maze-0.1.0.0-HhWpctN3zRv3CvYRyfN5QC"
+libdir     = "/Users/sriharisriraman/dev/haskell/abnv-course/maze/.stack-work/install/x86_64-osx/lts-5.4/7.10.3/lib/x86_64-osx-ghc-7.10.3/maze-0.1.0.0-GoKnX7KbWw6L6IQg5IY6eg"
 datadir    = "/Users/sriharisriraman/dev/haskell/abnv-course/maze/.stack-work/install/x86_64-osx/lts-5.4/7.10.3/share/x86_64-osx-ghc-7.10.3/maze-0.1.0.0"
 libexecdir = "/Users/sriharisriraman/dev/haskell/abnv-course/maze/.stack-work/install/x86_64-osx/lts-5.4/7.10.3/libexec"
 sysconfdir = "/Users/sriharisriraman/dev/haskell/abnv-course/maze/.stack-work/install/x86_64-osx/lts-5.4/7.10.3/etc"

@@ -2,37 +2,10 @@ module Lib
     ( someFunc
     ) where
 
-type Coord = (Int, Int)
+import qualified Data.Map as Map
+import qualified Data.Set as Set
 
-data Wall = Open | Closed deriving (Show, Eq)
-
-data Node = Node {  nodeCoord :: Coord
-                  ,    nodeUp :: Wall
-		  ,  nodeDown :: Wall
-		  ,  nodeLeft :: Wall
-		  , nodeRight :: Wall } deriving (Show, Eq)
-
-data Maze = Maze { mazeWidth  :: Int
-                 , mazeHeight :: Int
-		 , mazeNodes  :: Map Coord (Set Dir) } deriving (Show, Eq)
-
-initMaze :: Int -> Int -> Maze
-initMaze w h = Maze w h [Node (x,y) Closed Closed Closed Closed | x <- [1..w], y <- [1..h]]
-
--- renderNode ::
-renderMaze :: Maze -> String
-renderMaze (Maze w h mazeNodes) =
- concat [renderRow (getRow i) | i <- [1..h] ]
-  where
-    renderNode n = ("+---+", "|   |", "+---+")
-    getRow rowIndex = take w . drop (w * (rowIndex - 1)) $ mazeNodes
-    renderRow row =
-      let (fa, fb, fc) =
-               foldl (\(ra, rb, rc) (a, b, c) -> (ra ++ a, rb ++ b, rc ++ c)) ("", "", "")
-               . map renderNode
-               $ row
-      in unlines [fa, fb, fc]
-
+-- Here is a maze.
 -- +---+---+---+
 -- |           |
 -- +---+---+   +
@@ -41,5 +14,51 @@ renderMaze (Maze w h mazeNodes) =
 -- |           |
 -- +---+---+---+
 
+type Coord = (Int, Int)
+
+data Dir = L | U deriving (Show, Eq, Ord)
+
+type OpenGate = (Coord, Dir)
+
+data Wall = Open | Closed deriving (Show, Eq, Ord)
+
+data Maze = Maze { mazeWidth :: Int
+                 , mazeHeight :: Int
+                 , openMazeGates :: Set.Set OpenGate } deriving (Show, Eq)
+
+initMaze :: Int -> Int -> Maze
+initMaze w h = Maze w h Set.empty
+
+renderMaze :: Maze -> String
+renderMaze (Maze w h omg) =
+  unlines [renderRow (getRow i) i | i <- [0..h-1]]
+  where
+    renderFloor _ = "+---"
+    renderCeiling c  = if Set.member (c,U) omg then "+   " else "+---"
+    renderLeftWall c = if Set.member (c,U) omg then "   " else "|   "
+    renderNormalRow row = (concatMap renderCeiling row)
+                          ++ "+\n"
+			  ++ (concatMap renderLeftWall row)
+			  ++ "|"
+
+    renderLastRow row   = (concatMap renderCeiling row)
+                          ++ "+\n"
+			  ++ (concatMap renderLeftWall row)
+			  ++ "|\n"
+                          ++ (concatMap renderFloor row)
+			  ++ "+"
+
+    getRow rowIndex = [(rowIndex, y) | y <- [0..w-1]]
+    renderRow :: [Coord] -> Int -> String
+    renderRow row i = if i /= h-1 then renderNormalRow row
+                      else renderLastRow row
+
+
+createMaze :: Int -> Int -> Maze
+createMaze w h =
+  Maze w h $ foldl walk Set.empty allCoords
+  where
+    allCoords = [(x,y) | x <- [0..w-1], y <- [0..h-1]]
+    walk openGates (x,y) =
 
 someFunc = undefined

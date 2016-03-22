@@ -1,11 +1,11 @@
 
 ==================== FINAL INTERFACE ====================
-2016-03-14 14:09:49.230485 UTC
+2016-03-15 13:59:15.805885 UTC
 
 interface main@main:Main 7103
-  interface hash: b46cda4cafdabd897753694699a8bda8
-  ABI hash: fccd4f670a6cb8e3d66f7a4326813ac8
-  export-list hash: 49edcb29f31711b91fdbf1b3d3a9944c
+  interface hash: 23d452722138f0c5bb1f7acfca7930e4
+  ABI hash: 8a26325d35d0b5766e9b6474483c5c56
+  export-list hash: a9ccca6d264c42a7ef323f1739f210b9
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
   flag hash: a7d5c98135d7b1552a9d76406d9315e8
   sig of: Nothing
@@ -14,15 +14,21 @@ interface main@main:Main 7103
 exports:
   Main.main
 module dependencies:
-package dependencies: base-4.8.2.0* ghc-prim-0.4.0.0
-                      integer-gmp-1.0.0.0 maze-0.1.0.0@maze_HhWpctN3zRv3CvYRyfN5QC
+package dependencies: array-0.5.1.0@array_67iodizgJQIIxYVTp4emlA
+                      base-4.8.2.0* containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU
+                      deepseq-1.4.1.1@deeps_6vMKxt5sPFR0XsbRWvvq59 ghc-prim-0.4.0.0
+                      integer-gmp-1.0.0.0 maze-0.1.0.0@maze_GoKnX7KbWw6L6IQg5IY6eg
 orphans: base-4.8.2.0:GHC.Base base-4.8.2.0:GHC.Float
 family instance modules: base-4.8.2.0:Control.Applicative
-                         base-4.8.2.0:Data.Either base-4.8.2.0:Data.Monoid
-                         base-4.8.2.0:Data.Type.Equality base-4.8.2.0:GHC.Generics
+                         base-4.8.2.0:Data.Either base-4.8.2.0:Data.Functor.Identity
+                         base-4.8.2.0:Data.Monoid base-4.8.2.0:Data.Type.Equality
+                         base-4.8.2.0:Data.Void base-4.8.2.0:GHC.Exts
+                         base-4.8.2.0:GHC.Generics
+                         containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Map.Base
+                         containers-0.5.6.2@conta_2C3ZI8RgPO2LBMidXKTvIU:Data.Set.Base
 import  -/  base-4.8.2.0:Prelude 694dcaf039efe62df1c44834e2dbd2fb
 import  -/  ghc-prim-0.4.0.0:GHC.Types 6b27fb3fdbd0e3f0925a4496c66513bb
-import  -/  maze-0.1.0.0@maze_HhWpctN3zRv3CvYRyfN5QC:Lib 019f7806bf14e9e2847925448ed799f2
+import  -/  maze-0.1.0.0@maze_GoKnX7KbWw6L6IQg5IY6eg:Lib 7142880d25ce1be8bfcc25c17be280b2
 ef40a3682deabbcea478c2c998baaf79
   main :: GHC.Types.IO ()
   {- Strictness: b,
