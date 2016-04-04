@@ -421,3 +421,66 @@
 - numeric tower
 - a type is an instance of a type class
 ** maze
+* 2015-03-29
+** type classes
+- Eq, Enum, Show etc are the basic type classes
+- They give us abstractions
+
+** monoid
+- monoid is a type class
+- two things of type X can be "appended" to create one thing of type X
+- append can be any function
+- it's called "append" as it applies to lists, but it's not strictly "appending" as in the dictionary meaning
+  #+begin_src haskell
+  Prelude> :t mappend
+  mappend :: Monoid a => a -> a -> a
+
+  Prelude> :t mempty
+  mempty :: Monoid a => a
+  #+end_src
+- type classes come with a set of laws
+  - Eq => if a = b, then a not /= b
+- monoids have 4 laws
+- semi-group mappend, but no identity
+- monoid has mappend and has mempty
+- monoid is a subclass of semi-group
+
+*** a monoid list
+- implementing a monoid list
+  #+begin_src haskell
+  data List = EmptyList | List Int List deriving (Eq, Show)
+
+  instance Monoid List where
+    mempty = EmptyList
+
+    mappend EmptyList ys = ys
+    mappend (List x xs) ys = List x (mappend xs ys)
+  #+end_src
+
+- addable int monoid
+  #+begin_src haskell
+  data AddableInt = AddableInt Int deriving (Show)
+
+  instance Monoid AddableInt where
+    mempty = AddableInt 0
+    mappend (AddableInt x) (AddableInt y) = AddableInt (x + y)
+
+  #+end_src
+- others: set, string, bst, tuples
+
+*** new types
+-
+- #+begin_src haskell
+  *Main> :set -XGeneralizedNewtypeDeriving
+  *Main> newtype Path = Path String deriving (Monoid)
+  #+end_src
+
+*** delegating to encapsulated entities
+#+begin_src
+data MyMaybe a = MyNothing | MyJust a deriving (Show)
+instance Monoid a => Monoid (MyMaybe a) where
+  mempty = MyNothing
+  mappend MyNothing y = y
+  mappend x MyNothing = x
+  mappend (MyJust x) (MyJust y) = MyJust $ mappend x y
+#+end_src

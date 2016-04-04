@@ -84,3 +84,40 @@ isBST (Node l v r) = value l < v && value r > v
 -- quickCheck (\list val -> let tree = fromList list in find (insert tree val) val)
 -- quickCheck (\list -> Data.List.sort list == Data.List.nub (inOrder (fromList list)))
 -- quickCheck (\list -> isBST (fromList list))
+
+
+data List = EmptyList | List Int List deriving (Eq, Show)
+
+instance Monoid List where
+  mempty = EmptyList
+
+  mappend EmptyList ys = ys
+  mappend (List x xs) ys = List x (mappend xs ys)
+
+
+newtype AddableInt = AddableInt Int deriving (Show)
+
+instance Monoid AddableInt where
+  mempty = AddableInt 0
+  mappend (AddableInt x) (AddableInt y) = AddableInt (x + y)
+
+newtype MultiplyableInt = MultiplyableInt Int deriving (Show)
+
+instance Monoid MultiplyableInt where
+  mempty = MultiplyableInt 1
+  mappend (MultiplyableInt x) (MultiplyableInt y) = MultiplyableInt (x * y)
+
+data MyMaybe a = MyNothing | MyJust a deriving (Show)
+instance Monoid a => Monoid (MyMaybe a) where
+  mempty = MyNothing
+  mappend MyNothing y = y
+  mappend x MyNothing = x
+  mappend (MyJust x) (MyJust y) = MyJust $ mappend x y
+
+
+-- newtype Path = Path String deriving (Monoid)
+
+-- pathFromString :: String -> Path
+-- pathFromstring s =
+
+-- getFileContent :: Path -> String
