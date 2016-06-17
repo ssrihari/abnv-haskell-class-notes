@@ -1,6 +1,6 @@
-{-# Language GeneralizedNewtypeDeriving #-}
+{-# Language GeneralizedNewtypeDeriving, MultiParamTypeClasses, FlexibleInstances #-}
 
-module TransformerParseer where
+module TransformerParser where
 
 import Control.Applicative
 import Control.Monad
@@ -34,39 +34,59 @@ instance (Monad m) => Monad (StateT s m) where
     (a', s') <- runStateT a s
     runStateT (f a') s'
 
-get :: (Applicative m) => StateT s m s
-get = StateT $ \s -> pure (s, s)
+instance (Alternative m, Monad m) => Alternative (StateT s m) where
+  empty = StateT $ \_ -> empty
+  a <|> b = StateT $ \s -> runStateT a s <|> runStateT b s
 
-put :: (Applicative m) => s -> StateT s m ()
-put s' = StateT $ \_ -> pure ((), s')
+class MonadState s m where
+  get :: m s
+  put :: s -> m ()
+
+instance (Applicative m) => MonadState s (StateT s m) where
+  get    = StateT $ \s -> pure (s, s)
+  put s' = StateT $ \_ -> pure ((), s')
 
 modify :: (Monad m) => (s -> s) -> StateT s m ()
 modify f = get >>= put . f
 
 type State s a = StateT s Identity a
 
-newtype ParserT s m a = ParserT { runParserT :: StateT s m a }
-                      deriving (Functor, Applicative, Monad)
+newtype MaybeT m a = MaybeT { runMaybeT :: m (Maybe a) }
 
-instance (Alternative m, Monad m) => Alternative (ParserT s m) where
-  empty = ParserT $ StateT $ \_ -> empty
-  ma <|> mb = ParserT $ do
-    s <- get
-    let pa = runParserT ma
-        pb = runParserT mb
-    let _x = runStateT pa s <|> runStateT pb s
-    (a, s') <- _x
-    put s'
-    return a
+instance (Functor m) => Functor (MaybeT m) where
+  fmap f = MaybeT . fmap (fmap f) . runMaybeT
 
-type Parser i o = ParserT i Maybe o
+instance (Applicative m) => Applicative (MaybeT m) where
+  pure = MaybeT . pure . Just
+  mf <*> ma = MaybeT $ (<*>) <$> runMaybeT mf <*> runMaybeT ma
 
-predParser :: (a -> Bool) -> Parser [a] a
+instance (Monad m) => Monad (MaybeT m) where
+  -- f :: a -> m b
+  ma >>= f = MaybeT $ do
+    a <- runMaybeT ma -- Maybe a
+    case a of
+      Nothing -> return Nothing
+      Just a -> runMaybeT (f a)
+
+instance (Monad m) => Alternative (MaybeT m) where
+  empty = MaybeT $ pure Nothing
+  a <|> b = MaybeT $ (<|>) <$> (runMaybeT a) <*> (runMaybeT b)
+
+newtype WriterT w m a = WriterT { runWriterT :: m (a, w) }
+
+-- instances Func
+
+newtype ParserT i m o = ParserT { _runParserT :: StateT i (MaybeT m) o }
+                        deriving (Functor, Applicative, Monad, Alternative)
+
+runParserT p = runMaybeT . runStateT (_runParserT p)
+
+predParser :: Monad m => (a -> Bool) -> ParserT [a] m a
 predParser p = ParserT $ do
-  l <- get
-  case l of
+  i <- get
+  case i of
     (x:xs) | p x -> put xs >> return x
-    _            -> StateT $ \_ -> mzero
+    _            -> empty
 
-charParser :: Char -> Parser String Char
+charParser :: Monad m => Char -> ParserT String m Char
 charParser c = predParser (== c)
